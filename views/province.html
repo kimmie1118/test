@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/javascripts/jquery2.2.4.min.js"></script>
+</head>
+<body>
+    <form action="/login/province" method="post" >
+        <select name="sheng" id="sheng" onchange="cha(this.value)">
+            <option value="1">黑龙江</option>
+            <option value="2">北京</option>
+        </select>
+        <select name="" id="shi">
+            <option value="">市</option>
+        </select>
+    </form>
+</body>
+<script type="text/javascript">
+    function cha(a){
+        var url="/login/province";
+        var data={id:a};
+        $.post(url,data,function(result){
+            var str="";
+            for(var i=0;i<result.length;i++){
+                str+="<option value="+result[i].id+">"+result[i].name+"</option>"
+            };
+            $("#shi").html(str);
+        },"json")
+    }
+</script>
+</html>
